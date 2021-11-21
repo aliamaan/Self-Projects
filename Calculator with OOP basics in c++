@@ -1,0 +1,590 @@
+#include<iostream>
+#include<string>
+#include<math.h>
+
+using namespace std;
+
+class Base {
+private:
+	double num1, num2;
+public:
+	void setNum1(double Num1)
+	{
+		num1 = Num1;
+	}
+	void setNum2(double Num2)
+	{
+		num2 = Num2;
+	}
+	double getNum1() {
+		return num1;
+	}
+	double getNum2() {
+		return num2;
+	}
+	double add(double num, double num2)
+	{
+		return num + num2;
+
+	}
+	double subtract(double num, double num2)
+	{
+		return num - num2;
+	}
+	double multiply(double num, double num2)
+	{
+		return num*num2;
+	}
+	double division(double num, double num2)
+	{
+		return num / num2;
+	}
+};
+class AuxiliaryFunctions : public Base {
+private:
+	double Num1, Num2;
+public:
+	void setnum1(double num1) {
+		Num1 = num1;
+	}
+	void setnum2(double num2) {
+		Num2 = num2;
+	}
+	double getnum1()
+	{
+		return  Num1;
+	}
+	double getnum2()
+	{
+		return Num2;
+	}
+
+	double Sin(double num1)
+	{
+		setnum1(sin(num1 *3.141 / 180.0));
+		return  double(getnum1());
+	}
+
+	double Cos(double num1)
+	{
+		setnum1(cos(num1 *3.141 / 180.0));
+		return  double(getnum1());
+	}
+	double Tan(double num1)
+	{
+		setnum1(Sin(num1) / Cos(Num1));
+		return  double(getnum1());
+	}
+	double Cosec(double num1)
+	{
+		setnum1(1 / (sin(num1 *3.141 / 180.0)));
+		return  double(getnum1());
+	}
+	double Sec(double num1)
+	{
+		setnum1(1 / (cos(num1 *3.141 / 180.0)));
+		return  double(getnum1());
+	}
+	double Cot(double num1)
+	{
+		setnum1(Cos(num1) / Sin(num1));
+		return  double(getnum1());
+	}
+
+	double power(double num1, double base)
+	{
+		double var = 1;
+		for (int i = 0; i < base; ++i)
+		{
+			var *= num1;
+		}
+		return var;
+	}
+
+	double sqrt(double number)
+	{
+		double error = 0.00001;
+		double s = number;
+		while ((s - number / s) > error)
+		{
+			s = (s + number / s) / 2;
+		}
+		return s;
+	}
+
+	double factorial(double number)
+	{
+		long double a = 1.0;
+		if (number < 0)
+		{
+			cout << "Error! Factorial of a negative number doesn't exist.";
+		}
+		else
+		{
+			for (double i = 1; i <= number; ++i) {
+				setnum1(a *= i);
+			}
+		}
+		return getnum1();
+	}
+
+	double ASquare(double side)
+	{
+		return side*side;
+	}
+	double ARect(double length, double width)
+	{
+		return length*width;
+	}
+	double ACircle(double rad)
+	{
+		return rad*rad*3.141;
+	}
+	double ATriangle(double base, double height)
+	{
+		return 0.5*base*height;
+	}
+	double PRect(double length, double width)
+	{
+		return 2 * (length + width);
+	}
+	double PSquare(double side)
+	{
+		return 4 * side;
+	}
+	double PCircle(double rad)
+	{
+		return 2 * rad*3.141;
+	}
+	double PETriangle(double num)
+	{
+		return num;
+	}
+	double PRTriangle(double base, double height)
+	{
+		double var;
+		var = base + height + sqrt(power(base, 2) + power(height, 2));
+		return var;
+	}
+	double Inch_To_CmConv(double num)
+	{
+		return num*2.54;
+	}
+	double Cm_To_InchConv(double num)
+	{
+		return num / 2.54;
+	}
+	double Meter_To_FootConv(double num)
+	{
+		return num*3.2;
+	}
+	double  Foot_To_MeterConv(double num)
+	{
+		return num / 3.2;
+	}
+	double Mile_To_KMeterConv(double num)
+	{
+		return num*1.6;
+	}
+	double KMeter_To_MileConv(double num)
+	{
+		return num / 1.6;
+	}
+	double Kg_To_TonneConv(double num)
+	{
+		return num / 1000;
+	}
+	double Tonne_To_KgConv(double num)
+	{
+		return num * 1000;
+	}
+	double Pound_To_KgConv(double num)
+	{
+		return num / 2.2;
+	}
+	double KgConv_To_Pound(double num)
+	{
+		return num*2.2;
+	}
+	double Ounce_To_KgConv(double num)
+	{
+		return num / 35;
+	}
+	double KgConv_To_Ounce(double num)
+	{
+		return num * 35;
+	}
+
+};
+class Main {
+public:
+
+	void selection() {
+		cout << "\nSelect a Option." << "\n0.Exit\n1.Add\n2.Subtract\n3.Multiplication\n4.Division\n5.Trignometric Functions\n6.Power\n7.Square Root\n8.Factorial\n9.Area\n10.Perimeter\n11.Conversion\n";
+		cout << "Selected Choice : ";
+	}
+	virtual void operation() = 0;
+
+
+};
+class Abstract : public Main {
+	void operation()
+	{
+		cout << "!!!Basic Calculator!!!\nBy: Syed Ali Amaan Naqvi\nSap ID: 24869\n\n\n";
+		while (true)
+		{
+			selection();
+			AuxiliaryFunctions a1;
+			int choice;
+			double val, val2;
+			cin >> choice;
+			cout << endl;
+
+			switch (choice)
+			{
+
+			case 0:
+				exit(0);
+				break;
+
+			case 1:
+				cout << "Enter first number: ";
+				cin >> val;
+				cout << "Enter Second number: ";
+				cin >> val2;
+				a1.setNum1(val);
+				a1.setNum2(val2);
+				cout << "Answer = " << a1.add(a1.getNum1(), a1.getNum2()) << endl << endl;
+				break;
+
+			case 2:
+				cout << "Enter first number: ";
+				cin >> val;
+				cout << "Enter Second number: ";
+				cin >> val2;
+				a1.setNum1(val);
+				a1.setNum2(val2);
+				cout << "Answer = " << a1.subtract(a1.getNum1(), a1.getNum2()) << endl << endl;
+				break;
+
+			case 3:
+				cout << "Enter first number: ";
+				cin >> val;
+				cout << "Enter Second number: ";
+				cin >> val2;
+				a1.setNum1(val);
+				a1.setNum2(val2);
+				cout << "Answer = " << a1.multiply(a1.getNum1(), a1.getNum2()) << endl << endl;
+
+				break;
+
+			case 4:
+				cout << "Enter first number: ";
+				cin >> val;
+				cout << "Enter Second number: ";
+				cin >> val2;
+				a1.setNum1(val);
+				a1.setNum2(val2);
+				cout << "Answer = " << a1.division(a1.getNum1(), a1.getNum2()) << endl << endl;
+				break;
+
+			case 5:
+				cout << "\n1.Sin\n2.Cos\n3.Tan\n4.Cosec\n5.Sec\n6.Cot\n";
+				cout << "Select Choice:";
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Answer = " << double(a1.Sin(a1.getnum1())) << endl << endl;
+					break;
+				case 2:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum2(val);
+					cout << "Answer = " << double(a1.Cos(a1.getnum2())) << endl << endl;
+					break;
+				case 3:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum2(val);
+					cout << "Answer = " << double(a1.Tan(a1.getnum2())) << endl << endl;
+					break;
+				case 4:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum2(val);
+					cout << "Answer = " << double(a1.Cosec(a1.getnum2())) << endl << endl;
+					break;
+				case 5:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum2(val);
+					cout << "Answer = " << double(a1.Sec(a1.getnum2())) << endl << endl;
+					break;
+				case 6:
+					cout << "Enter a number: ";
+					cin >> val;
+					a1.setnum2(val);
+					cout << "Answer = " << double(a1.Cot(a1.getnum2())) << endl << endl;
+					break;
+				default:
+					cout << "You have selected an invalid choice!!!!\n\n";
+					break;
+				}
+				break;
+
+			case 6:
+				cout << "Enter base value: ";
+				cin >> val;
+				cout << "Enter exponential: ";
+				cin >> val2;
+				a1.setnum1(val);
+				a1.setnum2(val2);
+				cout << "Answer = " << double(a1.power(a1.getnum1(), a1.getnum2())) << endl << endl;
+				break;
+
+			case 7:
+				cout << "Enter a number: ";
+				cin >> val;
+				a1.setnum1(val);
+				cout << "Answer = " << double(a1.sqrt(a1.getnum1())) << endl << endl;
+				break;
+
+			case 8:
+				cout << "Enter a number: ";
+				cin >> val;
+				a1.setnum1(val);
+				cout << "Answer = " << a1.factorial(a1.getnum1()) << endl << endl;
+				break;
+
+			case 9:
+				cout << "\n1.Area of Square.\n2.Area of Rectangle\n3.Area of Circle\n4.Area of Triangle\n";
+				cout << "Select Choice:";
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+					cout << "Enter a number:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Answer:" << a1.ASquare(a1.getnum1()) << endl;
+					break;
+				case 2:
+					cout << "Enter Length:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Enter Width:";
+					cin >> val2;
+					a1.setnum2(val2);
+					cout << "Answer:" << a1.ARect(a1.getnum1(), a1.getnum2()) << endl;
+
+					break;
+				case 3:
+					cout << "Enter Radius:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Answer:" << a1.ACircle(a1.getnum1()) << endl;
+					break;
+
+				case 4:
+					cout << "Enter Base:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Enter Height:";
+					cin >> val2;
+					a1.setnum2(val2);
+					cout << "Answer:" << a1.ATriangle(a1.getnum1(), a1.getnum2()) << endl;
+					break;
+				default:
+					cout << "You have selected an invalid choice!!!!\n\n";
+					break;
+				}
+
+				break;
+
+			case 10:
+				cout << "\n1.Perimeter of Square.\n2.Perimeter of Rectangle\n3.Circumference of Circle\n4.Perimeter of Triangle\n";
+				cout << "Select Choice:";
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+					cout << "Enter a number:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Answer:" << a1.PSquare(a1.getnum1()) << endl;
+					break;
+				case 2:
+					cout << "Enter Length:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Enter Width:";
+					cin >> val2;
+					a1.setnum2(val2);
+					cout << "Answer:" << a1.PRect(a1.getnum1(), a1.getnum2()) << endl;
+					break;
+				case 3:
+					cout << "Enter Radius:";
+					cin >> val;
+					a1.setnum1(val);
+					cout << "Answer:" << a1.PCircle(a1.getnum1()) << endl;
+					break;
+				case 4:
+					cout << "\n1.Equilateral Triangle\n2.Right Angle Triangle\n";
+					cout << "Select Choice:";
+					cin >> choice;
+					switch (choice)
+					{
+					case 1:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.PETriangle(a1.getnum1()) << endl;
+						break;
+					case 2:
+						cout << "Enter Base:";
+						cin >> val;
+						cout << "Enter Height:";
+						cin >> val2;
+						a1.setnum1(val);
+						a1.setnum2(val2);
+						cout << "Answer:" << a1.PRTriangle(a1.getnum1(), a1.getnum2()) << endl;
+						break;
+					default:
+						cout << "You have selected an invalid choice!!!!\n\n";
+						break;
+					}
+					break;
+				default:
+					cout << "You have selected an invalid choice!!!!\n\n";
+					break;
+				}
+
+				break;
+
+			case 11:
+				cout << "\n1.Mass\n2.Length\n";
+				cout << "Select Choice :";
+				cin >> choice;
+
+				switch (choice)
+				{
+				case 1:
+					cout << "\n1.Kg to Ounce\n2.Ounce to Kg\n3.Kg to Pound\n4.Pound to Kg\n5.Kg to Tonne\n6.Tonne to Kg";
+					cout << "Select Choice :";
+					cin >> choice;
+
+					switch (choice)
+					{
+					case 1:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.KgConv_To_Ounce(a1.getnum1()) << "oz" << endl;
+						break;
+					case 2:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Ounce_To_KgConv(a1.getnum1()) << "Kg" << endl;
+						break;
+					case 3:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.KgConv_To_Pound(a1.getnum1()) << "lb" << endl;
+						break;
+					case 4:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Pound_To_KgConv(a1.getnum1()) << "Kg" << endl;
+						break;
+					case 5:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Kg_To_TonneConv(a1.getnum1()) << "t" << endl;
+						break;
+					case 6:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Tonne_To_KgConv(a1.getnum1()) << "Kg" << endl;
+						break;
+					default:
+						cout << "You have selected an invalid choice!!!!\n\n";
+						break;
+					}
+					break;
+				case 2:
+					cout << "\n1.Cm to Inch\n2.Inch to Cm\n3.Meter to Foot\n4.Foot to Meter\n5.Kilo Meter to Mile\n6.Mile to Kilo Meter\n";
+					cout << "Select Choice :";
+					cin >> choice;
+					switch (choice)
+					{
+					case 1:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Cm_To_InchConv(a1.getnum1()) << "inch" << endl;
+						break;
+					case 2:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Inch_To_CmConv(a1.getnum1()) << "cm" << endl;
+						break;
+					case 3:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Meter_To_FootConv(a1.getnum1()) << "foot" << endl;
+						break;
+					case 4:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Foot_To_MeterConv(a1.getnum1()) << "m" << endl;
+						break;
+					case 5:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.KMeter_To_MileConv(a1.getnum1()) << "mile" << endl;
+						break;
+					case 6:
+						cout << "Enter a number:";
+						cin >> val;
+						a1.setnum1(val);
+						cout << "Answer:" << a1.Mile_To_KMeterConv(a1.getnum1()) << "Km" << endl;
+						break;
+					default:
+						cout << "You have selected an invalid choice!!!!\n\n";
+						break;
+					}
+					break;
+				default:
+					cout << "You have selected an invalid choice!!!!\n\n";
+					break;
+				}
+				break;
+
+
+			default:
+				cout << "You have selected an invalid choice!!!!\n\n";
+				break;
+
+			}
+		}
+	}
+
+};
+int main()
+{
+	Main *m1 = new Abstract();
+	m1->operation();
+}
